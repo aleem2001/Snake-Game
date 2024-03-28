@@ -66,3 +66,15 @@ class Snake:
     def right(self):
         if self.head.heading() != LEFT:
             self.head.setheading(RIGHT)
+            
+    #resetting the snake's position
+    def reset(self):
+        #moving the dead snake segments to a place beyond the screen
+        for segment in self.my_snake:
+            segment.goto(1000,1000)
+        #clears the my_snake list
+        self.my_snake.clear()
+        #creating a new snake
+        self.create_snake()
+        self.head = self.my_snake[0]
+        self.tail = self.my_snake[-1]

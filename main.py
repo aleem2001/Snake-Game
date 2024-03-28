@@ -52,16 +52,16 @@ while game_is_on:
         #updating scoreboard
         scoreboard.increase_score()
         
-    #Detecting snake's collision with the wall, creating a boundary range of -290<x<290 and -290<y<290
+    #Detecting snake's collision with the wall, creating a boundary range of -290<x<290 and -290<y<290, and then resetting the game
     if snake.head.xcor() > 290 or snake.head.xcor() < -290 or snake.head.ycor() > 290 or snake.head.ycor() < -290:  
-        game_is_on = False
-        scoreboard.game_over()
+        scoreboard.reset()
+        snake.reset()
         
-    #Detecting snake's head collision with any segment of the tail, i.e any part of its body, we used list slicing
+    #Detecting snake's head collision with any segment of the tail, i.e any part of its body, we used list slicing, and then resetting the game
     for segment in snake.my_snake[1:]:
         if snake.head.distance(segment) < 10:
-            game_is_on = False
-            scoreboard.game_over()
+            scoreboard.reset()
+            snake.reset()
         
         
 #Does not allow the screen to vanish until it is clicked
