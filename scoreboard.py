@@ -8,6 +8,9 @@ class Scoreboard(Turtle):
         super().__init__()
         self.score = 0
         self.high_score = 0
+        #Reading the data file to get the high score
+        with open("data.txt", mode="r") as file:
+            self.high_score = int(file.read())
         self.penup()
         self.hideturtle()
         self.color('white')
@@ -21,9 +24,11 @@ class Scoreboard(Turtle):
         
     #reset game method and update high score
     def reset(self):
-        #updating high_score
+        #updating the high_score both in the game and in the data.txt file
         if self.score > self.high_score:
             self.high_score = self.score
+            with open("data.txt", mode="w") as file:
+                file.write(f"{self.high_score}")
         
         #resetting score
         self.score = 0
